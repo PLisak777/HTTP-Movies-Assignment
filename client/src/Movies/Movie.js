@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Route } from 'react-router-dom';
 import MovieCard from './MovieCard';
-import UpdateForm from './UpdateForm';
 
 function Movie({ addToSavedList }) {
 	const [movie, setMovie] = useState(null);
@@ -27,19 +26,15 @@ function Movie({ addToSavedList }) {
 		return <div>Loading movie information...</div>;
 	}
 
-	return (
-		<div className="save-wrapper">
-			<MovieCard movie={movie} />
-			<button
-				onClick={<Route path="/update-movie/:id" component={UpdateForm} />}
-			>
-				Edit
-			</button>
-			<div className="save-button" onClick={saveMovie}>
-				Save
+		return (
+			<div className="save-wrapper">
+				<MovieCard movie={movie} />
+
+				<div className="save-button" onClick={saveMovie}>
+					Save
+				</div>
 			</div>
-		</div>
-	);
+		);
 }
 
 export default Movie;

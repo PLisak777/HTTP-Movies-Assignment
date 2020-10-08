@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const UpdateMovie = () => {
+const UpdateMovie = (props) => {
 	const [update, setUpdate] = useState({
 		id: '',
 		title: '',
@@ -54,6 +54,12 @@ const UpdateMovie = () => {
 					'pl: UpdateMovies.js: handleSubmit: axios put success: res: ',
 					res
 				);
+				// setUpdate({
+				// 	title: update.title,
+				// 	director: update.director,
+				// 	metascore: update.metascore,
+                // });
+                setUpdate(res.data)
 				push(`/`);
 			})
 			.catch((err) => {
@@ -95,13 +101,14 @@ const UpdateMovie = () => {
 					<label htmlFor="stars">Stars: </label>
 					{update.stars.map((star, i) => {
 						return (
-						<input
-							type="text"
-							name={star}
-							onChange={handleStars}
-							value={star}
-							key={i}
-						/>)
+							<input
+								type="text"
+								name={star}
+								onChange={handleStars}
+								value={star}
+								key={i}
+							/>
+						);
 					})}
 				</div>
 				<button>Submit</button>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-const AddMovie = ({ handleStars }) => {
+const AddMovie = (props) => {
 	const [newMovie, setNewMovie] = useState({
 		id: 0,
 		title: '',
@@ -25,7 +25,7 @@ const AddMovie = ({ handleStars }) => {
             .post(`http://localhost:5000/api/movies`, newMovie)
             .then((res) => {
                 console.log('pl: AddMovie.js: handleSubmit: axios post: res: ', res)
-                setNewMovie(res.data)
+                props.setMovie(res.data)
                 push('/')
             })
             .catch((err) => {

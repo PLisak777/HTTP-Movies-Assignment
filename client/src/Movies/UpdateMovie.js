@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const UpdateMovie = (props) => {
+const UpdateMovie = ({ setMovieList }) => {
 	const [update, setUpdate] = useState({
 		id: '',
 		title: '',
@@ -54,12 +54,7 @@ const UpdateMovie = (props) => {
 					'pl: UpdateMovies.js: handleSubmit: axios put success: res: ',
 					res
 				);
-				// setUpdate({
-				// 	title: update.title,
-				// 	director: update.director,
-				// 	metascore: update.metascore,
-                // });
-                setUpdate(res.data)
+				setMovieList(res.data);
 				push(`/`);
 			})
 			.catch((err) => {
